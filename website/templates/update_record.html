@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-md-6 offset-md-3">
+    <h1>Update Record</h1>
+    <br/>
+    <form method="POST" action="{% url 'update_record' record.id %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <input type="text" class="form-control" name="first_name" value="{{ record.first_name }}" placeholder="First Name" required>
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control" name="last_name" value="{{ record.last_name }}" placeholder="Last Name" required>
+        </div>
+        <div class="mb-3">
+            <input type="email" class="form-control" name="email" value="{{ record.email }}" placeholder="Email" required>
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control" name="phone" value="{{ record.phone }}" placeholder="Phone" required>
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control" name="address" value="{{ record.address }}" placeholder="Address" required>
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control" name="city" value="{{ record.city }}" placeholder="City" required>
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control" name="state" value="{{ record.state }}" placeholder="State" required>
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control" name="country" value="{{ record.country }}" placeholder="Country" required>
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control" name="zip_code" value="{{ record.zip_code }}" placeholder="Zipcode" required>
+        </div>
+        <br/>
+        <button type="submit" class="btn btn-secondary">Update Record</button>
+        <a href="{% url 'delete_record' record.id %}" class="btn btn-danger">Delete Record</a>
+        <a href="{% url 'home' %}" class="btn btn-outline-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

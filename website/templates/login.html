@@ -1,15 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% if user.is_authenticated %}
-<script>
-    window.location.href = "{% url 'home' %}";
-</script>
-{% else %}
 
 <div class="col-md-6 offset-md-3">
     <h1>Login</h1>
     <br/>
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+
     <form method="post" action="{% url 'login' %}">
         {% csrf_token %}
         <div class="mb-3">
@@ -19,7 +23,9 @@
             <input type="password" class="form-control" name="password" placeholder="Password" required>
         </div>
         <button type="submit" class="btn btn-secondary">Login</button>
+        <p>Don't have an account?</p>
+        <a href="{% url 'register' %}" class="btn btn-outline-secondary">Register</a>
     </form>
 </div>
-{% endif %}
+
 {% endblock %}
